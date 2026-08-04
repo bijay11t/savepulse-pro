@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     
     <title>SavePulse Pro - Next-Gen Media Downloader & API Utility</title>
-    <meta name="description" content="Download high-definition videos and extract 192kbps audio effortlessly from YouTube, Instagram, and Facebook.">
+    <meta name="description" content="Download high-definition videos and extract 192kbps audio effortlessly from YouTube, Instagram, and Facebook with advanced glowing glassmorphism effects.">
     
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -15,6 +15,7 @@
             --bg-base: #050814;
             --bg-surface: rgba(13, 19, 38, 0.75);
             --border-glass: rgba(255, 255, 255, 0.08);
+            --border-glow: rgba(59, 130, 246, 0.4);
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
         }
@@ -33,7 +34,7 @@
                 radial-gradient(circle at 90% 85%, rgba(219, 39, 119, 0.1) 0%, transparent 45%);
         }
 
-        /* Navigation Bar */
+        /* Futuristic Glass Navbar */
         nav {
             display: flex;
             flex-wrap: wrap;
@@ -53,12 +54,17 @@
         .logo {
             font-size: 19px;
             font-weight: 800;
+            letter-spacing: -0.5px;
             color: white;
             display: flex;
             align-items: center;
             gap: 10px;
             cursor: pointer;
+            transition: transform 0.3s ease;
         }
+
+        .logo:hover { transform: scale(1.02); }
+        .logo i { filter: drop-shadow(0 0 10px rgba(96, 165, 250, 0.6)); }
 
         .logo span {
             background: linear-gradient(135deg, #60a5fa, #ec4899);
@@ -77,29 +83,43 @@
             font-size: 12px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .nav-links button:hover, .nav-links button.active {
+        .nav-links button:hover {
             color: white;
-            background: rgba(59, 130, 246, 0.2);
-            border-color: #60a5fa;
-            box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+            background: rgba(59, 130, 246, 0.12);
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
+            transform: translateY(-1px);
         }
 
-        /* Views */
+        .nav-links button.active {
+            color: white;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(147, 51, 234, 0.2));
+            border-color: #60a5fa;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.35);
+        }
+
+        /* View Layouts */
         .page-view {
             display: none;
             flex: 1;
             flex-direction: column;
             align-items: center;
             padding: 30px 5% 60px 5%;
+            animation: viewFade 0.4s ease-in-out;
             width: 100%;
             max-width: 1100px;
             margin: 0 auto;
         }
 
         .page-view.active-view { display: flex; }
+
+        @keyframes viewFade {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
         .status-pill {
             display: inline-flex;
@@ -113,6 +133,7 @@
             font-weight: 600;
             color: #34d399;
             margin-bottom: 18px;
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.1);
         }
 
         .status-dot {
@@ -120,21 +141,32 @@
             background-color: #34d399;
             border-radius: 50%;
             box-shadow: 0 0 8px #34d399;
+            animation: pulseGlow 2s infinite;
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(0.95); opacity: 0.6; box-shadow: 0 0 4px #34d399; }
+            50% { transform: scale(1.3); opacity: 1; box-shadow: 0 0 12px #34d399; }
+            100% { transform: scale(0.95); opacity: 0.6; box-shadow: 0 0 4px #34d399; }
         }
 
         h1 {
             font-size: 28px;
             font-weight: 800;
+            letter-spacing: -1px;
             margin-bottom: 12px;
             text-align: center;
+            max-width: 700px;
             line-height: 1.2;
         }
+
         @media (min-width: 640px) { h1 { font-size: 42px; } }
 
         h1 span {
             background: linear-gradient(135deg, #60a5fa 0%, #ec4899 50%, #f43f5e 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 25px rgba(236, 72, 153, 0.3));
         }
 
         .subtitle {
@@ -146,18 +178,25 @@
             line-height: 1.6;
         }
 
-        /* Tool Card */
+        /* High-End Interactive Tool Card with Hover Depth */
         .tool-card {
             background: var(--bg-surface);
             backdrop-filter: blur(24px);
             border: 1px solid var(--border-glass);
             padding: 24px 20px;
             border-radius: 28px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.1);
             width: 100%;
             max-width: 540px;
             margin-bottom: 40px;
+            transition: all 0.4s ease;
         }
+
+        .tool-card:hover {
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(59, 130, 246, 0.1);
+        }
+
         @media (min-width: 640px) { .tool-card { padding: 36px; } }
 
         .input-box-group {
@@ -170,6 +209,8 @@
             left: 16px; top: 50%;
             transform: translateY(-50%);
             color: #64748b;
+            font-size: 16px;
+            transition: color 0.3s ease;
         }
 
         input[type="text"] {
@@ -181,7 +222,16 @@
             color: white;
             font-size: 14px;
             outline: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
+        input[type="text"]:focus {
+            border-color: #3b82f6;
+            background: rgba(3, 7, 18, 0.95);
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15), 0 0 20px rgba(59, 130, 246, 0.2);
+        }
+
+        input[type="text"]:focus + i, .input-box-group:hover i { color: #60a5fa; }
 
         select {
             width: 100%;
@@ -194,8 +244,15 @@
             margin-bottom: 16px;
             outline: none;
             cursor: pointer;
+            transition: all 0.3s ease;
         }
 
+        select:hover, select:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.15);
+        }
+
+        /* Action Buttons & Platform Glow Themes */
         .action-btn {
             background: linear-gradient(135deg, #3b82f6, #2563eb);
             color: white;
@@ -211,12 +268,39 @@
             justify-content: center;
             gap: 10px;
             box-shadow: 0 10px 25px -4px rgba(59, 130, 246, 0.5);
-            transition: 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
         }
 
-        .action-btn:hover { transform: translateY(-2px); box-shadow: 0 15px 30px rgba(59, 130, 246, 0.7); }
+        .action-btn::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
 
-        /* Progress Bar Styles */
+        .action-btn:hover::after { left: 100%; }
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px -4px rgba(59, 130, 246, 0.7), 0 0 20px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-youtube { background: linear-gradient(135deg, #ef4444, #dc2626) !important; box-shadow: 0 10px 25px -4px rgba(239, 68, 68, 0.5) !important; }
+        .btn-youtube:hover { box-shadow: 0 15px 30px -4px rgba(239, 68, 68, 0.7), 0 0 20px rgba(239, 68, 68, 0.5) !important; }
+
+        .btn-facebook { background: linear-gradient(135deg, #2563eb, #1d4ed8) !important; box-shadow: 0 10px 25px -4px rgba(37, 99, 235, 0.5) !important; }
+        .btn-facebook:hover { box-shadow: 0 15px 30px -4px rgba(37, 99, 235, 0.7), 0 0 20px rgba(37, 99, 235, 0.5) !important; }
+
+        .btn-instagram { background: linear-gradient(135deg, #ec4899, #8b5cf6) !important; box-shadow: 0 10px 25px -4px rgba(236, 72, 153, 0.5) !important; }
+        .btn-instagram:hover { box-shadow: 0 15px 30px -4px rgba(236, 72, 153, 0.7), 0 0 25px rgba(236, 72, 153, 0.5) !important; }
+
+        .btn-default { background: linear-gradient(135deg, #10b981, #059669) !important; box-shadow: 0 10px 25px -4px rgba(16, 185, 129, 0.5) !important; }
+        .btn-default:hover { box-shadow: 0 15px 30px -4px rgba(16, 185, 129, 0.7), 0 0 20px rgba(16, 185, 129, 0.5) !important; }
+
+        /* Progress Bar UI Styles */
         #progressContainer {
             display: none;
             margin-top: 20px;
@@ -238,6 +322,7 @@
             height: 100%;
             background: linear-gradient(90deg, #3b82f6, #10b981);
             transition: width 0.4s ease;
+            box-shadow: 0 0 12px rgba(16, 185, 129, 0.6);
         }
 
         #progressText {
@@ -246,7 +331,7 @@
             font-weight: 600;
         }
 
-        /* Features Grid */
+        /* Feature Cards with Hover Depth */
         .features-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -261,7 +346,16 @@
             border: 1px solid var(--border-glass);
             padding: 24px 20px;
             border-radius: 22px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(17, 24, 39, 0.75);
+            border-color: rgba(59, 130, 246, 0.35);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(59, 130, 246, 0.15);
+        }
+
         .feature-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; color: white; }
         .feature-card p { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
 
@@ -282,7 +376,6 @@
 </head>
 <body>
 
-    <!-- Navbar -->
     <nav>
         <div class="logo" onclick="switchView('downloader')">
             <i class="fa-solid fa-bolt-lightning" style="color: #60a5fa;"></i> SavePulse <span>Pro</span>
@@ -294,19 +387,18 @@
         </div>
     </nav>
 
-    <!-- VIEW 1: Downloader -->
     <div id="view-downloader" class="page-view active-view">
         <div class="status-pill">
             <div class="status-dot"></div> Engine Operational • Direct Mobile Save Active
         </div>
 
         <h1>Download HD Content From <span>Any Social Network</span></h1>
-        <p class="subtitle">Lightning-fast high-definition downloads directly to your device storage.</p>
+        <p class="subtitle">Experience elite, zero-lag media parsing built for lightning-fast high-definition downloads.</p>
 
         <div class="tool-card">
             <div class="input-box-group">
                 <i class="fa-solid fa-link"></i>
-                <input type="text" id="videoUrl" placeholder="Paste YouTube, Instagram or FB link...">
+                <input type="text" id="videoUrl" placeholder="Paste YouTube, Instagram or FB link..." oninput="detectPlatformStyle()">
             </div>
 
             <select id="downloadType">
@@ -314,47 +406,45 @@
                 <option value="audio">Audio Extract (MP3 - 192kbps)</option>
             </select>
 
-            <button class="action-btn" id="startBtn" onclick="startDownloadProcess()">
-                <i class="fa-solid fa-cloud-arrow-down"></i> Download to Phone
+            <button class="action-btn btn-default" id="mainButton" onclick="startDownloadProcess()">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> Process Stream & Save
             </button>
 
             <div id="progressContainer">
                 <div class="progress-track">
                     <div class="progress-fill" id="progressFill"></div>
                 </div>
-                <div id="progressText">Processing container stream... (10%)</div>
+                <div id="progressText">Analyzing container and generating payload... (10%)</div>
             </div>
         </div>
 
         <div class="features-grid">
             <div class="feature-card">
                 <h3>YouTube Engine</h3>
-                <p>Process maximum resolution video containers or extract crisp 192kbps audio payloads instantly.</p>
+                <p>Process maximum resolution video containers or extract crisp 192kbps MP3 audio payloads instantly.</p>
             </div>
             <div class="feature-card">
                 <h3>Instagram Reels</h3>
-                <p>Bypass platform compression bottlenecks to grab high-definition vertical reels effortlessly.</p>
+                <p>Bypass platform compression bottlenecks to grab high-definition vertical reels with zero quality loss.</p>
             </div>
             <div class="feature-card">
                 <h3>Facebook Feeds</h3>
-                <p>Secure full public video files cleanly and directly into your local storage folder.</p>
+                <p>Secure full public video files cleanly and securely straight to your local device folder.</p>
             </div>
         </div>
     </div>
 
-    <!-- VIEW 2: FAQ -->
     <div id="view-faq" class="page-view">
         <h1>Frequently Asked <span>Questions</span></h1>
-        <p class="subtitle">Find answers regarding file delivery and formats.</p>
+        <p class="subtitle">Everything you need to know about our media utility engine.</p>
         <div style="color: var(--text-muted); font-size: 14px; text-align: center; max-width: 600px;">
             Files download directly into your mobile device's default system <b>Downloads</b> folder automatically upon completion.
         </div>
     </div>
 
-    <!-- VIEW 3: API Docs -->
     <div id="view-api" class="page-view">
         <h1>Developer <span>API Access</span></h1>
-        <p class="subtitle">Integrate our high-speed media pipeline.</p>
+        <p class="subtitle">Integrate our high-speed media pipeline directly into your custom apps.</p>
         <div style="color: var(--text-muted); font-size: 14px; text-align: center;">
             POST endpoint available at <code>/download</code> with JSON payloads.
         </div>
@@ -375,23 +465,43 @@
             window.scrollTo(0, 0);
         }
 
+        function detectPlatformStyle() {
+            const url = document.getElementById('videoUrl').value.toLowerCase();
+            const btn = document.getElementById('mainButton');
+            btn.className = "action-btn";
+
+            if (url.includes('youtube.com') || url.includes('youtu.be')) {
+                btn.classList.add('btn-youtube');
+                btn.innerHTML = '<i class="fa-brands fa-youtube"></i> Process YouTube Stream';
+            } else if (url.includes('facebook.com') || url.includes('fb.watch')) {
+                btn.classList.add('btn-facebook');
+                btn.innerHTML = '<i class="fa-brands fa-facebook"></i> Process Facebook Stream';
+            } else if (url.includes('instagram.com')) {
+                btn.classList.add('btn-instagram');
+                btn.innerHTML = '<i class="fa-brands fa-instagram"></i> Process Instagram Reel';
+            } else {
+                btn.classList.add('btn-default');
+                btn.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles"></i> Process Stream & Save';
+            }
+        }
+
         async function startDownloadProcess() {
             const url = document.getElementById('videoUrl').value;
             const type = document.getElementById('downloadType').value;
             const progressContainer = document.getElementById('progressContainer');
             const progressFill = document.getElementById('progressFill');
             const progressText = document.getElementById('progressText');
-            const startBtn = document.getElementById('startBtn');
+            const mainButton = document.getElementById('mainButton');
 
             if (!url) {
-                alert('Please paste a target link first.');
+                alert('Please paste a target link into the input field first.');
                 return;
             }
 
-            startBtn.style.display = 'none';
+            mainButton.style.display = 'none';
             progressContainer.style.display = 'block';
             progressFill.style.width = '20%';
-            progressText.innerText = 'Connecting to server engine... (20%)';
+            progressText.innerText = 'Connecting to extraction engine... (20%)';
 
             try {
                 const response = await fetch('/download', {
@@ -409,7 +519,7 @@
                 progressFill.style.width = '75%';
                 progressText.innerText = 'Packaging mobile file stream... (75%)';
 
-                // Trigger automatic browser/phone file download
+                // Automatically trigger phone storage download
                 const a = document.createElement('a');
                 a.href = data.download_url;
                 a.download = '';
@@ -421,14 +531,14 @@
                 progressText.innerText = 'Download complete! Saved to your phone folder. ✔';
                 
                 setTimeout(() => {
-                    startBtn.style.display = 'flex';
+                    mainButton.style.display = 'flex';
                     progressContainer.style.display = 'none';
                     progressFill.style.width = '0%';
                 }, 4000);
 
             } catch (err) {
                 alert('Error: ' + err.message);
-                startBtn.style.display = 'flex';
+                mainButton.style.display = 'flex';
                 progressContainer.style.display = 'none';
             }
         }
