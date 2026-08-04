@@ -1,11 +1,12 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, send_file
 import yt_dlp
 import os
 
 app = Flask(__name__)
 
-# Ensure download directory exists if needed
-os.makedirs('downloads', exist_ok=True)
+# Ensure download directory exists
+DOWNLOAD_DIR = os.path.join(os.getcwd(), 'downloads')
+os.makedirs(DOWNLOAD_DIR, exist_ok=True)
 
 @app.route('/')
 def index():
@@ -24,7 +25,7 @@ def download():
         ydl_opts = {
             'quiet': True,
             'no_warnings': True,
-            'extract_flat': False,
+            'outtmpl': os.path.join(DOWNLOAD_DIR, '%(id)s.%(ext)s'),
         }
 
         if download_type == 'audio':
@@ -42,28 +43,34 @@ def download():
             })
 
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-            info = ydl.extract_info(url, download=False)
-            
+            info = ydl.extract_info(url, download=True)
             title = info.get('title', 'Extracted Media Stream')
             thumbnail = info.get('thumbnail', '')
             
-            direct_url = ''
-            if 'url' in info:
-                direct_url = info['url']
-            elif 'formats' in info and len(info['formats']) > 0:
-                direct_url = info['formats'][-1].get('url', url)
-            else:
-                direct_url = url
+            # Get filename for local download route
+            filename = ydl.prepare_filename(info)
+            if download_type == 'audio':
+                filename = os.path.splitext(filename)[0] + '.mp3'
+            
+            relative_filename = os.path.basename(filename)
 
         return jsonify({
             'title': title,
             'thumbnail': thumbnail,
-            'download_url': direct_url,
+            'download_url': f'/get-file/{relative_filename}',
             'type': download_type
         })
 
     except Exception as e:
         return jsonify({'error': f'Failed to process container stream: {str(e)}'}), 500
+
+@app.route('/get-file/<filename>')
+def get_file(filename):
+    try:
+        file_path = os.path.join(DOWNLOAD_DIR, filename)
+        return send_file(file_path, as_attachment=True)
+    except Exception as e:
+        return f"File not found or expired: {str(e)}", 404
 
 # Explicit route handler for all footer links so they never show 404 Not Found
 @app.route('/softonic-info')
