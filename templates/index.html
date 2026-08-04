@@ -331,7 +331,7 @@
             font-weight: 600;
         }
 
-        /* Feature Cards with Hover Depth */
+        /* Feature Cards with Hover Depth & Icons */
         .features-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -354,6 +354,27 @@
             background: rgba(17, 24, 39, 0.75);
             border-color: rgba(59, 130, 246, 0.35);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(59, 130, 246, 0.15);
+        }
+
+        .feature-icon {
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-glass);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            background: rgba(59, 130, 246, 0.15);
+            border-color: rgba(59, 130, 246, 0.4);
+            transform: scale(1.08) rotate(5deg);
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
         }
 
         .feature-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; color: white; }
@@ -418,16 +439,20 @@
             </div>
         </div>
 
+        <!-- Restored Feature Cards with Platform Icons -->
         <div class="features-grid">
             <div class="feature-card">
+                <div class="feature-icon"><i class="fa-brands fa-youtube" style="color: #ef4444;"></i></div>
                 <h3>YouTube Engine</h3>
                 <p>Process maximum resolution video containers or extract crisp 192kbps MP3 audio payloads instantly.</p>
             </div>
             <div class="feature-card">
+                <div class="feature-icon"><i class="fa-brands fa-instagram" style="color: #ec4899;"></i></div>
                 <h3>Instagram Reels</h3>
                 <p>Bypass platform compression bottlenecks to grab high-definition vertical reels with zero quality loss.</p>
             </div>
             <div class="feature-card">
+                <div class="feature-icon"><i class="fa-brands fa-facebook" style="color: #3b82f6;"></i></div>
                 <h3>Facebook Feeds</h3>
                 <p>Secure full public video files cleanly and securely straight to your local device folder.</p>
             </div>
