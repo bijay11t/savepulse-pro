@@ -3,13 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    
-    <!-- SEO Meta Tags -->
-    <title>SavePulse Pro - Next-Gen Media Downloader & API Utility</title>
-    <meta name="description" content="Download high-definition videos and extract 192kbps audio effortlessly from YouTube, Instagram, and Facebook with advanced glowing glassmorphism effects.">
-    <meta name="robots" content="index, follow">
-    
-    <!-- Google Fonts & FontAwesome Icons -->
+    <title>SavePulse Pro - Secure Media Downloader</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -18,10 +12,8 @@
             --bg-base: #050814;
             --bg-surface: rgba(13, 19, 38, 0.75);
             --border-glass: rgba(255, 255, 255, 0.08);
-            --border-glow: rgba(59, 130, 246, 0.4);
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
-            --primary-glow: rgba(59, 130, 246, 0.25);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; }
@@ -32,192 +24,20 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 10% 15%, rgba(37, 99, 235, 0.12) 0%, transparent 45%),
-                radial-gradient(circle at 90% 85%, rgba(219, 39, 119, 0.1) 0%, transparent 45%);
-        }
-
-        /* Futuristic Glass Navbar */
-        nav {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
             align-items: center;
-            padding: 16px 5%;
-            border-bottom: 1px solid var(--border-glass);
-            background: rgba(5, 8, 20, 0.85);
-            backdrop-filter: blur(20px);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            padding: 20px 5%;
         }
 
-        @media (min-width: 640px) {
-            nav { padding: 18px 8%; }
-        }
-
-        .logo {
-            font-size: 19px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            color: white;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .logo:hover {
-            transform: scale(1.02);
-        }
-
-        .logo i {
-            filter: drop-shadow(0 0 10px rgba(96, 165, 250, 0.6));
-        }
-
-        .logo span {
-            background: linear-gradient(135deg, #60a5fa, #ec4899);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 8px;
-        }
-
-        .nav-links button {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-glass);
-            color: var(--text-muted);
-            padding: 7px 14px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .nav-links button:hover {
-            color: white;
-            background: rgba(59, 130, 246, 0.12);
-            border-color: rgba(59, 130, 246, 0.3);
-            box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
-            transform: translateY(-1px);
-        }
-
-        .nav-links button.active {
-            color: white;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(147, 51, 234, 0.2));
-            border-color: #60a5fa;
-            box-shadow: 0 0 20px rgba(59, 130, 246, 0.35);
-        }
-
-        /* View Layouts */
-        .page-view {
-            display: none;
-            flex: 1;
-            flex-direction: column;
-            align-items: center;
-            padding: 30px 5% 60px 5%;
-            animation: viewFade 0.4s ease-in-out;
-            width: 100%;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .page-view.active-view {
-            display: flex;
-        }
-
-        @keyframes viewFade {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .status-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(16, 185, 129, 0.08);
-            border: 1px solid rgba(16, 185, 129, 0.25);
-            padding: 6px 14px;
-            border-radius: 30px;
-            font-size: 11px;
-            font-weight: 600;
-            color: #34d399;
-            margin-bottom: 18px;
-            box-shadow: 0 0 15px rgba(16, 185, 129, 0.1);
-        }
-
-        .status-dot {
-            width: 6px;
-            height: 6px;
-            background-color: #34d399;
-            border-radius: 50%;
-            box-shadow: 0 0 8px #34d399;
-            animation: pulseGlow 2s infinite;
-        }
-
-        @keyframes pulseGlow {
-            0% { transform: scale(0.95); opacity: 0.6; box-shadow: 0 0 4px #34d399; }
-            50% { transform: scale(1.3); opacity: 1; box-shadow: 0 0 12px #34d399; }
-            100% { transform: scale(0.95); opacity: 0.6; box-shadow: 0 0 4px #34d399; }
-        }
-
-        h1 {
-            font-size: 28px;
-            font-weight: 800;
-            letter-spacing: -1px;
-            margin-bottom: 12px;
-            text-align: center;
-            max-width: 700px;
-            line-height: 1.2;
-        }
-
-        @media (min-width: 640px) {
-            h1 { font-size: 42px; }
-        }
-
-        h1 span {
-            background: linear-gradient(135deg, #60a5fa 0%, #ec4899 50%, #f43f5e 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 25px rgba(236, 72, 153, 0.3));
-        }
-
-        .subtitle {
-            color: var(--text-muted);
-            font-size: 14px;
-            margin-bottom: 30px;
-            text-align: center;
-            max-width: 500px;
-            line-height: 1.6;
-        }
-
-        /* High-End Interactive Tool Card */
         .tool-card {
             background: var(--bg-surface);
             backdrop-filter: blur(24px);
             border: 1px solid var(--border-glass);
             padding: 24px 20px;
             border-radius: 28px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
             width: 100%;
-            max-width: 540px;
-            margin-bottom: 40px;
-            transition: all 0.4s ease;
-        }
-
-        .tool-card:hover {
-            border-color: rgba(59, 130, 246, 0.3);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(59, 130, 246, 0.1);
-        }
-
-        @media (min-width: 640px) {
-            .tool-card { padding: 36px; }
+            max-width: 500px;
+            margin-top: 40px;
         }
 
         .input-box-group {
@@ -231,8 +51,6 @@
             top: 50%;
             transform: translateY(-50%);
             color: #64748b;
-            font-size: 16px;
-            transition: color 0.3s ease;
         }
 
         input[type="text"] {
@@ -244,24 +62,6 @@
             color: white;
             font-size: 14px;
             outline: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        input[type="text"]:focus {
-            border-color: #3b82f6;
-            background: rgba(3, 7, 18, 0.95);
-            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15), 0 0 20px rgba(59, 130, 246, 0.2);
-        }
-
-        input[type="text"]:focus + i, .input-box-group:hover i {
-            color: #60a5fa;
-        }
-
-        .options-stack {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-            margin-bottom: 18px;
         }
 
         select {
@@ -272,14 +72,8 @@
             border-radius: 16px;
             color: white;
             font-size: 14px;
+            margin-bottom: 16px;
             outline: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        select:hover, select:focus {
-            border-color: #3b82f6;
-            box-shadow: 0 0 15px rgba(59, 130, 246, 0.15);
         }
 
         .action-btn {
@@ -292,469 +86,93 @@
             width: 100%;
             font-size: 14px;
             font-weight: 700;
-            letter-spacing: 0.3px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 10px 25px -4px rgba(59, 130, 246, 0.5);
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
-            position: relative;
-            overflow: hidden;
+            box-shadow: 0 10px 25px -4px rgba(59, 130, 246, 0.5);
         }
 
-        .action-btn::after {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: 0.5s;
-        }
-
-        .action-btn:hover::after {
-            left: 100%;
-        }
-
-        .action-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 30px -4px rgba(59, 130, 246, 0.7), 0 0 20px rgba(59, 130, 246, 0.4);
-        }
-
-        .action-btn:active {
-            transform: translateY(1px);
-        }
-
-        /* Platform Themes with Enhanced Glows */
-        .btn-youtube { background: linear-gradient(135deg, #ef4444, #dc2626) !important; box-shadow: 0 10px 25px -4px rgba(239, 68, 68, 0.5) !important; }
-        .btn-youtube:hover { box-shadow: 0 15px 30px -4px rgba(239, 68, 68, 0.7), 0 0 20px rgba(239, 68, 68, 0.5) !important; }
-
-        .btn-facebook { background: linear-gradient(135deg, #2563eb, #1d4ed8) !important; box-shadow: 0 10px 25px -4px rgba(37, 99, 235, 0.5) !important; }
-        .btn-facebook:hover { box-shadow: 0 15px 30px -4px rgba(37, 99, 235, 0.7), 0 0 20px rgba(37, 99, 235, 0.5) !important; }
-
-        .btn-instagram { background: linear-gradient(135deg, #ec4899, #8b5cf6) !important; box-shadow: 0 10px 25px -4px rgba(236, 72, 153, 0.5) !important; }
-        .btn-instagram:hover { box-shadow: 0 15px 30px -4px rgba(236, 72, 153, 0.7), 0 0 25px rgba(236, 72, 153, 0.5) !important; }
-
-        .btn-default { background: linear-gradient(135deg, #10b981, #059669) !important; box-shadow: 0 10px 25px -4px rgba(16, 185, 129, 0.5) !important; }
-        .btn-default:hover { box-shadow: 0 15px 30px -4px rgba(16, 185, 129, 0.7), 0 0 20px rgba(16, 185, 129, 0.5) !important; }
-
-        #loading {
-            margin-top: 20px;
+        /* Progress Bar UI Styles */
+        #progressContainer {
             display: none;
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 13px;
-        }
-
-        .spinner {
-            width: 30px;
-            height: 30px;
-            border: 3px solid rgba(255,255,255,0.08);
-            border-top-color: #60a5fa;
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-            margin: 0 auto 12px auto;
-            filter: drop-shadow(0 0 8px rgba(96, 165, 250, 0.5));
-        }
-
-        @keyframes spin { to { transform: rotate(360deg); } }
-
-        .result-container {
             margin-top: 20px;
-            background: rgba(3, 7, 18, 0.9);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            padding: 16px;
-            border-radius: 18px;
-            display: none;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(59, 130, 246, 0.15);
-        }
-
-        .result-meta {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-            align-items: center;
-            margin-bottom: 16px;
             text-align: center;
         }
 
-        @media (min-width: 480px) {
-            .result-meta {
-                flex-direction: row;
-                text-align: left;
-            }
-        }
-
-        .result-meta img {
-            width: 110px;
-            height: 70px;
-            object-fit: cover;
+        .progress-track {
+            width: 100%;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-        }
-
-        .result-meta h4 {
-            font-size: 13px;
-            font-weight: 600;
-            color: white;
-            line-height: 1.4;
-        }
-
-        /* Feature Cards with Hover Depth */
-        .features-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 16px;
-            max-width: 900px;
-            width: 100%;
-            margin-bottom: 40px;
-        }
-
-        @media (min-width: 640px) {
-            .features-grid { grid-template-columns: repeat(3, 1fr); }
-        }
-
-        .feature-card {
-            background: rgba(17, 24, 39, 0.45);
-            border: 1px solid var(--border-glass);
-            padding: 24px 20px;
-            border-radius: 22px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
             overflow: hidden;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            background: rgba(17, 24, 39, 0.75);
-            border-color: rgba(59, 130, 246, 0.35);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(59, 130, 246, 0.15);
-        }
-
-        .feature-icon {
-            width: 44px;
-            height: 44px;
-            background: rgba(255, 255, 255, 0.04);
             border: 1px solid var(--border-glass);
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            margin-bottom: 16px;
-            transition: all 0.3s ease;
+            margin-bottom: 10px;
         }
 
-        .feature-card:hover .feature-icon {
-            background: rgba(59, 130, 246, 0.15);
-            border-color: rgba(59, 130, 246, 0.4);
-            transform: scale(1.08) rotate(5deg);
-            box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #10b981);
+            transition: width 0.3s ease;
+            box-shadow: 0 0 12px rgba(16, 185, 129, 0.6);
         }
 
-        .feature-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; color: white; }
-        .feature-card p { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
-
-        /* FAQ & API Sections */
-        .faq-wrapper, .api-docs {
-            max-width: 750px;
-            width: 100%;
-        }
-
-        .faq-card {
-            background: rgba(17, 24, 39, 0.45);
-            border: 1px solid var(--border-glass);
-            border-radius: 16px;
-            margin-bottom: 12px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .faq-card:hover {
-            border-color: rgba(59, 130, 246, 0.3);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-        }
-
-        .faq-question {
-            padding: 16px 20px;
-            font-weight: 600;
-            font-size: 14px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: color 0.3s ease;
-        }
-
-        .faq-card:hover .faq-question {
-            color: #60a5fa;
-        }
-
-        .faq-answer {
-            padding: 0 20px 16px 20px;
-            color: var(--text-muted);
+        #progressText {
             font-size: 13px;
-            line-height: 1.6;
-            display: none;
-        }
-
-        .faq-card.open .faq-answer { display: block; }
-        .faq-card.open .faq-question i { transform: rotate(180deg); color: #60a5fa; }
-        .faq-question i { transition: transform 0.3s ease, color 0.3s ease; }
-
-        .api-docs {
-            background: rgba(17, 24, 39, 0.6);
-            border: 1px solid var(--border-glass);
-            border-radius: 20px;
-            padding: 24px;
-            text-align: left;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-        }
-
-        .api-docs h3 { color: #60a5fa; margin-bottom: 10px; font-size: 16px; }
-        .code-box {
-            background: #02040a;
-            border: 1px solid #1e293b;
-            padding: 16px;
-            border-radius: 12px;
-            font-family: monospace;
-            font-size: 12px;
-            color: #34d399;
-            margin-bottom: 20px;
-            overflow-x: auto;
-            box-shadow: inset 0 2px 8px rgba(0,0,0,0.8);
-        }
-
-        /* Footer */
-        footer {
-            border-top: 1px solid var(--border-glass);
-            padding: 24px 6%;
-            background: #02040a;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            align-items: center;
-            text-align: center;
             color: var(--text-muted);
-            font-size: 12px;
-            width: 100%;
+            font-weight: 600;
         }
-
-        @media (min-width: 640px) {
-            footer {
-                flex-direction: row;
-                justify-content: space-between;
-                padding: 28px 8%;
-            }
-        }
-
-        footer .footer-links {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        footer button {
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            cursor: pointer;
-            font-size: 12px;
-            transition: color 0.3s ease;
-        }
-        footer button:hover { color: #60a5fa; text-shadow: 0 0 10px rgba(96, 165, 250, 0.4); }
     </style>
 </head>
 <body>
 
-    <!-- Next-Gen Navigation Bar -->
-    <nav>
-        <div class="logo" onclick="switchView('downloader')">
-            <i class="fa-solid fa-bolt-lightning" style="color: #60a5fa;"></i> SavePulse <span>Pro</span>
-        </div>
-        <div class="nav-links">
-            <button id="nav-downloader" class="active" onclick="switchView('downloader')">Downloader</button>
-            <button id="nav-faq" onclick="switchView('faq')">FAQ</button>
-            <button id="nav-api" onclick="switchView('api')">API Docs</button>
-        </div>
-    </nav>
-
-    <!-- VIEW 1: DOWNLOADER HOME -->
-    <div id="view-downloader" class="page-view active-view">
-        <div class="status-pill">
-            <div class="status-dot"></div> Engine Operational • High-Speed Stream Active
+    <div class="tool-card">
+        <h2 style="margin-bottom: 20px; font-size: 20px; text-align: center;">SavePulse <span style="color: #60a5fa;">Downloader</span></h2>
+        
+        <div class="input-box-group">
+            <i class="fa-solid fa-link"></i>
+            <input type="text" id="videoUrl" placeholder="Paste media link here...">
         </div>
 
-        <h1>Download HD Content From <span>Any Social Network</span></h1>
-        <p class="subtitle">Experience elite, zero-lag media parsing built for lightning-fast high-definition downloads across YouTube, Instagram, and Facebook.</p>
+        <select id="downloadType">
+            <option value="video">Video Stream (MP4)</option>
+            <option value="audio">Audio Extract (MP3)</option>
+        </select>
 
-        <div class="tool-card">
-            <div class="input-box-group">
-                <i class="fa-solid fa-link"></i>
-                <input type="text" id="videoUrl" placeholder="Paste YouTube, Instagram or FB link..." oninput="detectPlatformStyle()">
-            </div>
+        <button class="action-btn" id="startBtn" onclick="startDownloadProcess()">
+            <i class="fa-solid fa-cloud-arrow-down"></i> Download to Phone
+        </button>
 
-            <div class="options-stack">
-                <select id="downloadType">
-                    <option value="video">Video Stream (MP4 - High Definition)</option>
-                    <option value="audio">Audio Extract (MP3 - 192kbps)</option>
-                </select>
-                <button class="action-btn btn-default" id="mainButton" onclick="fetchVideo()">
-                    <i class="fa-solid fa-wand-magic-sparkles"></i> Process Stream
-                </button>
+        <div id="progressContainer">
+            <div class="progress-track">
+                <div class="progress-fill" id="progressFill"></div>
             </div>
-            
-            <div id="loading">
-                <div class="spinner"></div>
-                Analyzing container and generating secure payload stream...
-            </div>
-
-            <div class="result-container" id="resultArea">
-                <div class="result-meta">
-                    <img id="resThumbnail" src="" alt="Media Thumbnail Preview">
-                    <h4 id="resTitle"></h4>
-                </div>
-                <a id="downloadAnchor" href="#" target="_blank">
-                    <button class="action-btn" id="downloadBtnFinal" style="width: 100%;">
-                        <i class="fa-solid fa-cloud-arrow-down"></i> Initialize Direct Download
-                    </button>
-                </a>
-            </div>
-        </div>
-
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fa-brands fa-youtube" style="color: #ef4444;"></i></div>
-                <h3>YouTube Engine</h3>
-                <p>Process maximum resolution video containers or extract crisp 192kbps MP3 audio payloads instantly.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fa-brands fa-instagram" style="color: #ec4899;"></i></div>
-                <h3>Instagram Reels</h3>
-                <p>Bypass platform compression bottlenecks to grab high-definition vertical reels with zero quality loss.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fa-brands fa-facebook" style="color: #3b82f6;"></i></div>
-                <h3>Facebook Feeds</h3>
-                <p>Secure full public video files cleanly and securely without malicious trackers or unwanted redirects.</p>
-            </div>
+            <div id="progressText">Initializing server processing... (0%)</div>
         </div>
     </div>
-
-    <!-- VIEW 2: FAQ SECTION -->
-    <div id="view-faq" class="page-view">
-        <h1>Frequently Asked <span>Questions</span></h1>
-        <p class="subtitle">Everything you need to know about our high-performance media utility engine.</p>
-
-        <div class="faq-wrapper">
-            <div class="faq-card open" onclick="toggleFaq(this)">
-                <div class="faq-question">Is this media downloader 100% free? <i class="fa-solid fa-chevron-down"></i></div>
-                <div class="faq-answer">Yes, SavePulse Pro is completely free with no registration walls, forced subscriptions, or hidden rate caps for personal usage.</div>
-            </div>
-            <div class="faq-card" onclick="toggleFaq(this)">
-                <div class="faq-question">How do I convert YouTube videos to MP3? <i class="fa-solid fa-chevron-down"></i></div>
-                <div class="faq-answer">Paste your video link into the downloader card, switch the format dropdown to "Audio Extract (MP3)", and click Process Stream.</div>
-            </div>
-            <div class="faq-card" onclick="toggleFaq(this)">
-                <div class="faq-question">What file formats and qualities are supported? <i class="fa-solid fa-chevron-down"></i></div>
-                <div class="faq-answer">We support high-definition MP4 containers and top-grade 192kbps MP3 audio conversions pulled directly from platform CDNs.</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- VIEW 3: DEVELOPER API DOCS -->
-    <div id="view-api" class="page-view">
-        <h1>Developer <span>API Access</span></h1>
-        <p class="subtitle">Integrate our high-speed media pipeline directly into your custom applications or bots.</p>
-
-        <div class="api-docs">
-            <h3>Endpoint Overview</h3>
-            <p style="color: var(--text-muted); margin-bottom: 14px; font-size: 13px;">Send a standard POST request containing your target media URL and preferred output type to programmatically generate direct downloadable stream URLs.</p>
-            
-            <h3>HTTP Request Example</h3>
-            <div class="code-box">
-                POST /download<br>
-                Content-Type: application/json<br><br>
-                {<br>
-                &nbsp;&nbsp;"url": "https://www.youtube.com/watch?v=example",<br>
-                &nbsp;&nbsp;"type": "audio"<br>
-                }
-            </div>
-
-            <h3>Response Payload Structure</h3>
-            <div class="code-box">
-                {<br>
-                &nbsp;&nbsp;"title": "Extracted Media Stream Title",<br>
-                &nbsp;&nbsp;"thumbnail": "https://img.youtube.com/vi/.../hqdefault.jpg",<br>
-                &nbsp;&nbsp;"download_url": "https://redirect-stream-link...",<br>
-                &nbsp;&nbsp;"type": "audio"<br>
-                }
-            </div>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer>
-        <div>&copy; 2026 SavePulse Pro Engine. All rights reserved.</div>
-        <div class="footer-links">
-            <button onclick="alert('Privacy Policy: We do not log user data or download logs.')">Privacy Policy</button>
-            <button onclick="alert('Terms of Service: Authorized for individual personal utility media rendering only.')">Terms</button>
-            <button onclick="switchView('faq')">Help Center</button>
-        </div>
-    </footer>
 
     <script>
-        function switchView(viewName) {
-            document.querySelectorAll('.page-view').forEach(el => el.classList.remove('active-view'));
-            document.querySelectorAll('.nav-links button').forEach(el => el.classList.remove('active'));
-
-            document.getElementById('view-' + viewName).classList.add('active-view');
-            const navBtn = document.getElementById('nav-' + viewName);
-            if(navBtn) navBtn.classList.add('active');
-            window.scrollTo(0, 0);
-        }
-
-        function toggleFaq(card) {
-            card.classList.toggle('open');
-        }
-
-        function detectPlatformStyle() {
-            const url = document.getElementById('videoUrl').value.toLowerCase();
-            const btn = document.getElementById('mainButton');
-
-            btn.className = "action-btn";
-
-            if (url.includes('youtube.com') || url.includes('youtu.be')) {
-                btn.classList.add('btn-youtube');
-                btn.innerHTML = '<i class="fa-brands fa-youtube"></i> Process YouTube Stream';
-            } else if (url.includes('facebook.com') || url.includes('fb.watch')) {
-                btn.classList.add('btn-facebook');
-                btn.innerHTML = '<i class="fa-brands fa-facebook"></i> Process Facebook Stream';
-            } else if (url.includes('instagram.com')) {
-                btn.classList.add('btn-instagram');
-                btn.innerHTML = '<i class="fa-brands fa-instagram"></i> Process Instagram Reel';
-            } else {
-                btn.classList.add('btn-default');
-                btn.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles"></i> Process Stream';
-            }
-        }
-
-        async function fetchVideo() {
+        async function startDownloadProcess() {
             const url = document.getElementById('videoUrl').value;
             const type = document.getElementById('downloadType').value;
-            const resultArea = document.getElementById('resultArea');
-            const loading = document.getElementById('loading');
-            
+            const progressContainer = document.getElementById('progressContainer');
+            const progressFill = document.getElementById('progressFill');
+            const progressText = document.getElementById('progressText');
+            const startBtn = document.getElementById('startBtn');
+
             if (!url) {
-                alert('Please paste a target link into the input field first.');
+                alert('Please provide a link first!');
                 return;
             }
 
-            resultArea.style.display = 'none';
-            loading.style.display = 'block';
+            startBtn.style.display = 'none';
+            progressContainer.style.display = 'block';
+            progressFill.style.width = '10%';
+            progressText.innerText = 'Connecting to extraction engine... (10%)';
 
             try {
+                // Request file generation from backend server
                 const response = await fetch('/download', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -762,29 +180,36 @@
                 });
 
                 const data = await response.json();
-                loading.style.display = 'none';
 
-                if (response.ok) {
-                    document.getElementById('resThumbnail').src = data.thumbnail;
-                    document.getElementById('resTitle').innerText = data.title;
-                    document.getElementById('downloadAnchor').href = data.download_url;
-                    
-                    const finalBtn = document.getElementById('downloadBtnFinal');
-                    finalBtn.innerHTML = data.type === 'audio' ? '<i class="fa-solid fa-file-audio"></i> Download MP3 File' : '<i class="fa-solid fa-file-video"></i> Download MP4 File';
-
-                    finalBtn.className = "action-btn";
-                    if (url.includes('youtube')) finalBtn.classList.add('btn-youtube');
-                    else if (url.includes('facebook') || url.includes('fb.')) finalBtn.classList.add('btn-facebook');
-                    else if (url.includes('instagram')) finalBtn.classList.add('btn-instagram');
-                    else finalBtn.classList.add('btn-default');
-
-                    resultArea.style.display = 'block';
-                } else {
-                    alert(data.error);
+                if (!response.ok) {
+                    throw new Error(data.error || 'Server error occurred');
                 }
+
+                progressFill.style.width = '70%';
+                progressText.innerText = 'Preparing mobile file package... (70%)';
+
+                // Trigger direct mobile browser download using a temporary anchor element
+                const downloadUrl = data.download_url;
+                const a = document.createElement('a');
+                a.href = downloadUrl;
+                a.download = ''; // Forces browser to treat target as local download attachment
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+
+                progressFill.style.width = '100%';
+                progressText.innerText = 'Download complete! Check your device phone folder. ✔';
+                
+                setTimeout(() => {
+                    startBtn.style.display = 'flex';
+                    progressContainer.style.display = 'none';
+                    progressFill.style.width = '0%';
+                }, 4000);
+
             } catch (err) {
-                loading.style.display = 'none';
-                alert('Connection failure or server error occurred.');
+                alert('Error: ' + err.message);
+                startBtn.style.display = 'flex';
+                progressContainer.style.display = 'none';
             }
         }
     </script>
