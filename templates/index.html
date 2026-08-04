@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <title>SavePulse Pro - Secure Media Downloader</title>
+    
+    <title>SavePulse Pro - Next-Gen Media Downloader & API Utility</title>
+    <meta name="description" content="Download high-definition videos and extract 192kbps audio effortlessly from YouTube, Instagram, and Facebook.">
+    
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -24,10 +27,126 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            padding: 20px 5%;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 15%, rgba(37, 99, 235, 0.12) 0%, transparent 45%),
+                radial-gradient(circle at 90% 85%, rgba(219, 39, 119, 0.1) 0%, transparent 45%);
         }
 
+        /* Navigation Bar */
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 5%;
+            border-bottom: 1px solid var(--border-glass);
+            background: rgba(5, 8, 20, 0.85);
+            backdrop-filter: blur(20px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        @media (min-width: 640px) { nav { padding: 18px 8%; } }
+
+        .logo {
+            font-size: 19px;
+            font-weight: 800;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .logo span {
+            background: linear-gradient(135deg, #60a5fa, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links { display: flex; gap: 8px; }
+
+        .nav-links button {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-glass);
+            color: var(--text-muted);
+            padding: 7px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links button:hover, .nav-links button.active {
+            color: white;
+            background: rgba(59, 130, 246, 0.2);
+            border-color: #60a5fa;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Views */
+        .page-view {
+            display: none;
+            flex: 1;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 5% 60px 5%;
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .page-view.active-view { display: flex; }
+
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #34d399;
+            margin-bottom: 18px;
+        }
+
+        .status-dot {
+            width: 6px; height: 6px;
+            background-color: #34d399;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #34d399;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            text-align: center;
+            line-height: 1.2;
+        }
+        @media (min-width: 640px) { h1 { font-size: 42px; } }
+
+        h1 span {
+            background: linear-gradient(135deg, #60a5fa 0%, #ec4899 50%, #f43f5e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 30px;
+            text-align: center;
+            max-width: 500px;
+            line-height: 1.6;
+        }
+
+        /* Tool Card */
         .tool-card {
             background: var(--bg-surface);
             backdrop-filter: blur(24px);
@@ -36,9 +155,10 @@
             border-radius: 28px;
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
             width: 100%;
-            max-width: 500px;
-            margin-top: 40px;
+            max-width: 540px;
+            margin-bottom: 40px;
         }
+        @media (min-width: 640px) { .tool-card { padding: 36px; } }
 
         .input-box-group {
             position: relative;
@@ -47,8 +167,7 @@
 
         .input-box-group i {
             position: absolute;
-            left: 16px;
-            top: 50%;
+            left: 16px; top: 50%;
             transform: translateY(-50%);
             color: #64748b;
         }
@@ -74,6 +193,7 @@
             font-size: 14px;
             margin-bottom: 16px;
             outline: none;
+            cursor: pointer;
         }
 
         .action-btn {
@@ -91,9 +211,12 @@
             justify-content: center;
             gap: 10px;
             box-shadow: 0 10px 25px -4px rgba(59, 130, 246, 0.5);
+            transition: 0.3s ease;
         }
 
-        /* Progress Bar UI Styles */
+        .action-btn:hover { transform: translateY(-2px); box-shadow: 0 15px 30px rgba(59, 130, 246, 0.7); }
+
+        /* Progress Bar Styles */
         #progressContainer {
             display: none;
             margin-top: 20px;
@@ -114,8 +237,7 @@
             width: 0%;
             height: 100%;
             background: linear-gradient(90deg, #3b82f6, #10b981);
-            transition: width 0.3s ease;
-            box-shadow: 0 0 12px rgba(16, 185, 129, 0.6);
+            transition: width 0.4s ease;
         }
 
         #progressText {
@@ -123,36 +245,136 @@
             color: var(--text-muted);
             font-weight: 600;
         }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            max-width: 900px;
+            width: 100%;
+        }
+        @media (min-width: 640px) { .features-grid { grid-template-columns: repeat(3, 1fr); } }
+
+        .feature-card {
+            background: rgba(17, 24, 39, 0.45);
+            border: 1px solid var(--border-glass);
+            padding: 24px 20px;
+            border-radius: 22px;
+        }
+        .feature-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; color: white; }
+        .feature-card p { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-glass);
+            padding: 24px 6%;
+            background: #02040a;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-muted);
+            font-size: 12px;
+            width: 100%;
+            margin-top: auto;
+        }
     </style>
 </head>
 <body>
 
-    <div class="tool-card">
-        <h2 style="margin-bottom: 20px; font-size: 20px; text-align: center;">SavePulse <span style="color: #60a5fa;">Downloader</span></h2>
-        
-        <div class="input-box-group">
-            <i class="fa-solid fa-link"></i>
-            <input type="text" id="videoUrl" placeholder="Paste media link here...">
+    <!-- Navbar -->
+    <nav>
+        <div class="logo" onclick="switchView('downloader')">
+            <i class="fa-solid fa-bolt-lightning" style="color: #60a5fa;"></i> SavePulse <span>Pro</span>
+        </div>
+        <div class="nav-links">
+            <button id="nav-downloader" class="active" onclick="switchView('downloader')">Downloader</button>
+            <button id="nav-faq" onclick="switchView('faq')">FAQ</button>
+            <button id="nav-api" onclick="switchView('api')">API Docs</button>
+        </div>
+    </nav>
+
+    <!-- VIEW 1: Downloader -->
+    <div id="view-downloader" class="page-view active-view">
+        <div class="status-pill">
+            <div class="status-dot"></div> Engine Operational • Direct Mobile Save Active
         </div>
 
-        <select id="downloadType">
-            <option value="video">Video Stream (MP4)</option>
-            <option value="audio">Audio Extract (MP3)</option>
-        </select>
+        <h1>Download HD Content From <span>Any Social Network</span></h1>
+        <p class="subtitle">Lightning-fast high-definition downloads directly to your device storage.</p>
 
-        <button class="action-btn" id="startBtn" onclick="startDownloadProcess()">
-            <i class="fa-solid fa-cloud-arrow-down"></i> Download to Phone
-        </button>
-
-        <div id="progressContainer">
-            <div class="progress-track">
-                <div class="progress-fill" id="progressFill"></div>
+        <div class="tool-card">
+            <div class="input-box-group">
+                <i class="fa-solid fa-link"></i>
+                <input type="text" id="videoUrl" placeholder="Paste YouTube, Instagram or FB link...">
             </div>
-            <div id="progressText">Initializing server processing... (0%)</div>
+
+            <select id="downloadType">
+                <option value="video">Video Stream (MP4 - High Definition)</option>
+                <option value="audio">Audio Extract (MP3 - 192kbps)</option>
+            </select>
+
+            <button class="action-btn" id="startBtn" onclick="startDownloadProcess()">
+                <i class="fa-solid fa-cloud-arrow-down"></i> Download to Phone
+            </button>
+
+            <div id="progressContainer">
+                <div class="progress-track">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div id="progressText">Processing container stream... (10%)</div>
+            </div>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>YouTube Engine</h3>
+                <p>Process maximum resolution video containers or extract crisp 192kbps audio payloads instantly.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Instagram Reels</h3>
+                <p>Bypass platform compression bottlenecks to grab high-definition vertical reels effortlessly.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Facebook Feeds</h3>
+                <p>Secure full public video files cleanly and directly into your local storage folder.</p>
+            </div>
         </div>
     </div>
 
+    <!-- VIEW 2: FAQ -->
+    <div id="view-faq" class="page-view">
+        <h1>Frequently Asked <span>Questions</span></h1>
+        <p class="subtitle">Find answers regarding file delivery and formats.</p>
+        <div style="color: var(--text-muted); font-size: 14px; text-align: center; max-width: 600px;">
+            Files download directly into your mobile device's default system <b>Downloads</b> folder automatically upon completion.
+        </div>
+    </div>
+
+    <!-- VIEW 3: API Docs -->
+    <div id="view-api" class="page-view">
+        <h1>Developer <span>API Access</span></h1>
+        <p class="subtitle">Integrate our high-speed media pipeline.</p>
+        <div style="color: var(--text-muted); font-size: 14px; text-align: center;">
+            POST endpoint available at <code>/download</code> with JSON payloads.
+        </div>
+    </div>
+
+    <footer>
+        <div>&copy; 2026 SavePulse Pro Engine. All rights reserved.</div>
+    </footer>
+
     <script>
+        function switchView(viewName) {
+            document.querySelectorAll('.page-view').forEach(el => el.classList.remove('active-view'));
+            document.querySelectorAll('.nav-links button').forEach(el => el.classList.remove('active'));
+
+            document.getElementById('view-' + viewName).classList.add('active-view');
+            const navBtn = document.getElementById('nav-' + viewName);
+            if(navBtn) navBtn.classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
         async function startDownloadProcess() {
             const url = document.getElementById('videoUrl').value;
             const type = document.getElementById('downloadType').value;
@@ -162,17 +384,16 @@
             const startBtn = document.getElementById('startBtn');
 
             if (!url) {
-                alert('Please provide a link first!');
+                alert('Please paste a target link first.');
                 return;
             }
 
             startBtn.style.display = 'none';
             progressContainer.style.display = 'block';
-            progressFill.style.width = '10%';
-            progressText.innerText = 'Connecting to extraction engine... (10%)';
+            progressFill.style.width = '20%';
+            progressText.innerText = 'Connecting to server engine... (20%)';
 
             try {
-                // Request file generation from backend server
                 const response = await fetch('/download', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -182,23 +403,22 @@
                 const data = await response.json();
 
                 if (!response.ok) {
-                    throw new Error(data.error || 'Server error occurred');
+                    throw new Error(data.error || 'Server processing failed');
                 }
 
-                progressFill.style.width = '70%';
-                progressText.innerText = 'Preparing mobile file package... (70%)';
+                progressFill.style.width = '75%';
+                progressText.innerText = 'Packaging mobile file stream... (75%)';
 
-                // Trigger direct mobile browser download using a temporary anchor element
-                const downloadUrl = data.download_url;
+                // Trigger automatic browser/phone file download
                 const a = document.createElement('a');
-                a.href = downloadUrl;
-                a.download = ''; // Forces browser to treat target as local download attachment
+                a.href = data.download_url;
+                a.download = '';
                 document.body.appendChild(a);
                 a.click();
                 document.body.removeChild(a);
 
                 progressFill.style.width = '100%';
-                progressText.innerText = 'Download complete! Check your device phone folder. ✔';
+                progressText.innerText = 'Download complete! Saved to your phone folder. ✔';
                 
                 setTimeout(() => {
                     startBtn.style.display = 'flex';
